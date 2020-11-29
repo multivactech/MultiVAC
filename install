@@ -1,0 +1,39 @@
+#!/usr/bin/env python2.7
+
+"""
+Script for installing multivac, including auto-gen necessary code.
+"""
+
+import os
+import subprocess
+
+def execute(cmds, realtime_output=False):
+    p = subprocess.Popen(cmds, stdout=subprocess.PIPE)
+    if realtime_output:
+        while p.poll() is None:
+            l = p.stdout.readline() # This blocks until it receives a newline.
+            print l
+        print p.stdout.read()
+    else:
+        return p.communicate()
+
+def gen_code():
+    print "Generating code..."
+    go_pkgs = execute(["go", "list", "-f", "{{.Dir}}", "./..."])[0].split()
+    for p in go_pkgs:
+        os.chdir(p)
+        subprocess.check_call(["go", "generate"])
+
+def wire_download():
+    subprocess.call("go get github.com/google/wire/cmd/wire", shell=True)
+
+
+if __name__ == "__main__":
+    wire_download()
+    root_path = os.path.abspath(os.path.join(os.path.abspath(__file__), os.pardir))
+    os.chdir(root_path)
+    gen_code()
+    print "Installing..."
+    os.chdir(root_path)
+    subprocess.check_call(["go", "install"])
+    print 'Complete'

@@ -1,0 +1,30 @@
+groups:
+  - name: multivac monitoring
+    rules:
+      - record: shard:multivac_shard_size
+        expr: sum(multivac_shard_presence) by (shard_id)
+
+      - record: shard:multivac_tps
+        expr: avg(rate(multivac_confirmed_tx_cnt[1m])) by (shard_id)
+
+      - record: shard:multivac_pending_tx
+        expr: avg(multivac_pending_tx_cnt) by (shard_id)
+
+      - record: shard:multivac_broadcast_msg_rate
+        expr: sum(rate(multivac_broadcasted_msg_cnt[1m])) by (shard_id)
+
+      - record: shard:multivac_shard_max_height
+        expr: max(multivac_shard_height) by (shard_id)
+
+      - record: shard:multivac_shard_enabled_miner
+        expr: sum(multivac_shard_enabled_miner_num) by (shard_id)
+
+        # TODO Make a distribution for cpu usage perhaps, do not calculate 3 times.
+      - record: global:min_cpu_usage
+        expr: min(rate(node_cpu_seconds_total{mode="user"}[1m]))
+
+      - record: global:max_cpu_usage
+        expr: max(rate(node_cpu_seconds_total{mode="user"}[1m]))
+
+      - record: global:avg_cpu_usage
+        expr: avg(rate(node_cpu_seconds_total{mode="user"}[1m]))

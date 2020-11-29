@@ -1,0 +1,76 @@
+package: github.com/multivactech/MultiVAC
+ignore:
+  - crypto/ed25519
+import:
+  - package: github.com/aliyun/alibaba-cloud-sdk-go
+    version: ^1.53.79
+    subpackages:
+      - sdk/requests
+      - services/ecs
+  - package: github.com/aws/aws-sdk-go
+    version: ^1.19.4
+    subpackages:
+      - aws
+      - aws/awserr
+      - aws/credentials
+      - aws/session
+      - service/ec2
+  - package: github.com/davecgh/go-spew
+    version: v1.1.0
+    subpackages:
+      - spew
+  - package: github.com/google/wire
+    version: ^0.2.1
+  - package: github.com/jessevdk/go-flags
+    version: v1.4.0
+  - package: github.com/jrick/logrotate
+    version: v1.0.0
+    subpackages:
+      - rotator
+  - package: github.com/go-interpreter/wagon
+    repo: http://github.com/perlin-network/wagon
+    subpackages:
+      - disasm
+      - exec
+      - validate
+      - wasm
+      - wasm/leb128
+      - wasm/operators
+  - package: github.com/perlin-network/life
+    version: 89b850c02992a30165387bbda172369df30870fa
+    subpackages:
+      - exec
+  - package: github.com/prometheus/client_model
+    version: fd36f4220a901265f90734c3183c5f0c91daa0b8
+  - package: github.com/prometheus/client_golang
+    version: v1.0.0
+    subpackages:
+      - prometheus
+      - prometheus/promhttp
+  - package: github.com/syndtr/goleveldb
+    version: v1.0.0
+    subpackages:
+      - leveldb
+      - leveldb/errors
+      - leveldb/filter
+      - leveldb/opt
+  - package: golang.org/x/crypto/ssh
+  - package: gopkg.in/mgo.v2
+    subpackages:
+      - bson
+  - package: gopkg.in/yaml.v2
+    version: ^2.2.2
+  # Dependencies of life:
+  # - package: github.com/go-interpreter/wagon
+  #   version: v0.5.0
+  #   subpackages:
+  #   - disasm
+  #   - exec
+  #   - validate
+  #   - wasm
+  #   - wasm/leb128
+  #   - wasm/operators
+  - package: github.com/vmihailenco/msgpack
+    version: v4.0.4
+  - package: github.com/stretchr/testify
+    version: v1.4.0

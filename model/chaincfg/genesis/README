@@ -1,0 +1,13 @@
+To update shard lists, run script.py. Usage:
+
+python script.py <prefix_length>
+
+e.g.
+python script.py 7
+
+It will generate 2<<7 = 128 shards.
+
+This script also generates private keys and public keys for each shard. So
+the more shards, the longer it will take.
+
+Maximum prefix length is 32.
