@@ -12,10 +12,18 @@ $ export GOBIN=$GOPATH/bin
 $ export PATH=$PATH:$GOBIN
 ```
 
-- Install glide (package management). https://github.com/Masterminds/glide
+- Install glide (package management). https://github.com/Masterminds/glide (instructions copied below)
 
-```bashN
-$ curl https://glide.sh/get | sh
+On Mac OS X you can install the latest release via [Homebrew](https://github.com/Homebrew/homebrew):
+
+```
+$ brew install glide
+```
+
+On Ubuntu install the package `golang-glide`:
+
+```
+$ sudo apt install golang-glide
 ```
 
 - Install lint libs
